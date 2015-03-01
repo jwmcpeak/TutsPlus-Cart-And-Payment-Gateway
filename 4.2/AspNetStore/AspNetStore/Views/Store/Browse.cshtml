@@ -1,0 +1,26 @@
+﻿@model IEnumerable<AspNetStore.Models.Product>
+
+@{
+    var category = Model.First().Category.Name;
+    ViewBag.Title = "Browse " + category;
+}
+
+<h2>Browse</h2>
+
+<div class="category">
+    <h3>
+        <em>@category</em>
+    </h3>
+
+    <ul id="category-list" class="list-unstyled">
+        @foreach (var product in Model)
+        {
+            <li class="col-lg-2 col-md-2 col-sm-2 col-xs-4 container">
+                <a href="@Url.Action("Details", new { id = product.ProductId })">
+                    <img alt="@product.Name" src="@Url.Content(product.ImageUrl)" />
+                    <h5 class="control-label">@product.Name</h5>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

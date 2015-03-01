@@ -1,0 +1,58 @@
+﻿﻿@model AspNetStore.ViewModels.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+
+<h3>
+    <em>Review</em> your cart:
+</h3>
+
+<p class="button">
+    Check Out
+</p>
+<div id="update-message">
+</div>
+<table id="cart-summary" width="100%">
+    <tr>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Price (each)
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Items)
+    {
+        <tr id="row-@item.CartItemId">
+            <td>
+                @Html.ActionLink(item.Product.Name,
+                    "Details", "Store", new { id = item.ProductId }, null)
+            </td>
+            <td>
+                @item.Product.Price
+            </td>
+            <td id="item-count-@item.CartItemId">
+                @item.Count
+            </td>
+            <td>
+                @Html.ActionLink("Remove from Cart", "RemoveFromCart", new { id = item.ProductId })
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            Total
+        </td>
+        <td></td>
+        <td></td>
+        <td id="cart-total">
+            @Model.Total
+        </td>
+    </tr>
+</table>

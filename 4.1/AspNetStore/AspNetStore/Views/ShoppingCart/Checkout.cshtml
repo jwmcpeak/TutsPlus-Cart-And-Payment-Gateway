@@ -1,0 +1,77 @@
+﻿﻿@model AspNetStore.ViewModels.CheckoutViewModel
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<form action="@Url.Action("Checkout")" method="POST" id="braintree-payment-form">
+    @Html.AntiForgeryToken()
+    <h2>Checkout</h2>
+
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Shipping Information</legend>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.FirstName)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.FirstName)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.LastName)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.LastName)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.Address)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.Address)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.City)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.City)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.State)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.State)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.PostalCode)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.PostalCode)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.Country)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.Country)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.Phone)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.Phone)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.Email)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.Email)</div>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>Payment Information</legend>
+        <p>
+            <label>Card Number</label>
+            <input type="text" size="20" autocomplete="off" data-encrypted-name="CardNumber" />
+        </p>
+        <p>
+            <label>CVV</label>
+            <input type="text" size="4" autocomplete="off" data-encrypted-name="Cvv" />
+        </p>
+        <p>
+            <label>Expiration (MM/YYYY)</label>
+            <input type="text" size="2" name="Month" /> / <input type="text" size="4" name="Year" />
+        </p>
+    </fieldset>
+    <input class="submit-button" type="submit" />
+</form>
+
+@section scripts {
+    <script src="https://js.braintreegateway.com/v1/braintree.js"></script>
+    <script>
+        var braintree = Braintree.create("MIIBCgKCAQEAv0SZanwD8hsBH3+m2ccA2rcS3eZbuio63kQ7EzzRhuHC+cHjVr71sg6PNFK7V6gbuqGKb2fTGi4HjiqwX+jN1SXxnV7dO4hRlwj9fK3VSxkfLIK8RJCR1pzUvJbeyIuamDCMZyy/VZGIvi99jPvfd2c72u1aYWWwJeyl2ETyXvFa0Utg2mJ37ktNPoHVChuz8zHdrjiIYDSSUIJ0JT2kreTvKoiBmlMBGMkV39t3Mxtvmg5V53sD9DJ3k70pIy+Vyt8YebIPjG8oLdLCWnylksMX2UMVP2isp+HL5Di8cEZ4WMrcYi2ifAuOvP9o22dmCwvJuGzXpfjI8YyMbsik9wIDAQAB");
+
+        braintree.onSubmitEncryptForm("braintree-payment-form");
+    </script>
+}

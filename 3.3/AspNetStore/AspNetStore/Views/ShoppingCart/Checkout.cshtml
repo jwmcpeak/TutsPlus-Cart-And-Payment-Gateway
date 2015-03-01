@@ -1,0 +1,52 @@
+﻿﻿@model AspNetStore.ViewModels.CheckoutViewModel
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h2>Checkout</h2>
+    <fieldset>
+        <legend>Shipping Information</legend>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.FirstName)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.FirstName)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.LastName)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.LastName)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.Address)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.Address)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.City)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.City)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.State)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.State)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.PostalCode)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.PostalCode)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.Country)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.Country)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.Phone)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.Phone)</div>
+        </p>
+        <p>
+            <div class="editor-label">@Html.LabelFor(m => m.Email)</div>
+            <div class="editor-field">@Html.EditorFor(m => m.Email)</div>
+        </p>
+    </fieldset>
+
+    <input class="submit-button" type="submit" />
+}

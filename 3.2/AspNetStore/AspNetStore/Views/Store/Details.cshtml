@@ -1,0 +1,25 @@
+﻿@model AspNetStore.Models.Product
+@{
+
+    ViewBag.Title = Model.Name + " Details";
+}
+
+<h2>@Model.Name</h2>
+
+<p>
+    <img alt="@Model.Name" src="@Url.Content(Model.ImageUrl)" />
+</p>
+
+<div id="category-details">
+    <p>
+        <em>Category:</em>
+        @Model.Category.Name
+    </p>
+    <p>
+        <em>Price:</em>
+        @Html.DisplayFor(m => m.Price)
+    </p>
+    <p class="button">
+        @Html.ActionLink("Add to Cart", "AddtoCart", new { controller = "ShoppingCart", id=Model.ProductId})
+    </p>
+</div>
